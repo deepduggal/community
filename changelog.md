@@ -53,6 +53,11 @@ Refactored into hooks and separate code for requests. Made all blogs page that l
 Need to move the code from home page to the blog post page. 
 
 
-# **@todo Need to figure out how to pass the blogs data from the all blogs page to the blog post page.**
+Q: Need to figure out how to pass the blogs data from the all blogs page to the blog post page.
 
-# ****** Hurry up and ask Lewis, Deep!!!!!!!! ******
+A: useSearchParams
+
+
+# 5/20
+
+Testing. Adding comments to posts.

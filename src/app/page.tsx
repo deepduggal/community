@@ -9,6 +9,7 @@ import { auth, provider} from '@/app/firebase';
 import { AuthUserProvider, useAuth } from '@/app/auth';
 import { EmailAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 const loginOrRegister = async () => {
@@ -17,19 +18,12 @@ const loginOrRegister = async () => {
 
 const googleLogin = async () => (await signInWithPopup(auth, provider));
 
-const logout = async () => {
-  await signOut(auth);
-  // router.push('/');
-};
-
-// const Navbar = () => {
-  // const router = useRouter();
-//   return (
-//     <nav className=''></nav>
-//   );
+// const logout = async () => {
+//   await signOut(auth);
+//   // router.push('/');
 // };
 
-function Home() {
+export default function Home() {
   const {authUser, isLoading} = useAuth();
   const router = useRouter();
 
@@ -41,19 +35,20 @@ function Home() {
   return (
     <main>
       {/* Home Page */}
-      {!authUser && (
-        <>
-          <h1 className='text-4xl'>Markdown Blog Editor</h1>
+        <div className='p-2 md:p-4'>
+          <h1 className='text-7xl md:text-9xl font-thin my-6'>Markdown Blog Editor</h1>
           <div>
-            <button onClick={loginOrRegister}>Login / Register</button>
+            {!authUser && <button onClick={loginOrRegister}>Login / Register</button>}
+            {authUser && <Link href='/blogs' className='text-5xl font-bold'>Go to Blogs <span className="material-symbols-outlined">
+arrow_forward
+</span></Link>}
           </div>
-        </>
-      )}
+        </div>
 
       {/* /blogs/[id] A specific blog's page. */}
       {/* {authUser && firstTextDoc && 
-      <div className="flex flex-col p-4 gap-6 h-screen">
-        <button onClick={logout}>Logout</button>
+   </svg>   <div className="flex flex-col p-4 gap-6 h-screen">
+        <butt</svg>on onClick={logout}>Logout</button>
         <Editor data={firstTextDoc} onSave={async (value) => {
           // Make sure we have a document reference before updating it
           if (firstTextDoc) {
@@ -65,12 +60,5 @@ function Home() {
       </div>
       } */}
     </main>
-  );
-}
-
-
-export default function HomeWithProviders() {
-  return (
-    <Home />
   );
 }

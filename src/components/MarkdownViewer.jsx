@@ -13,6 +13,6 @@ export default function MarkdownViewer({value, className=''}) {
   );
 
   return (
-    <div className={`h-1/2 p-2 text-black bg-white dark:text-white dark:bg-slate-800 rounded-lg overflow-y-scroll ${className}`} dangerouslySetInnerHTML={{__html: markdown}}></div>
+    <div className={`h-1/2 p-2 text-black overflow-y-scroll ${className}`} dangerouslySetInnerHTML={{__html: markdown}}></div>
   )
 }
