@@ -1,8 +1,8 @@
 import { db } from "@/app/firebase";
-import { doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, updateDoc, type CollectionReference } from "firebase/firestore";
 
 // Get the Texts collection
-export const getTextsCollection = async (collectionRef) => {
+export const getTextsCollection = async (collectionRef: CollectionReference) => {
   try {
     const querySnapshot = await getDocs(collectionRef);
     const texts = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
@@ -15,7 +15,7 @@ export const getTextsCollection = async (collectionRef) => {
 };
 
 // Get the Texts collection
-export const getTextsDoc = async (id) => {
+export const getTextsDoc = async (id: string) => {
 
   try {
     const docRef = doc(db, "texts", id); // Create a DocumentReference object
@@ -34,7 +34,7 @@ export const getTextsDoc = async (id) => {
    * @param docId - The document ID
    * @param newData - The new data to update the document with
    */
-export const updateTextDoc = async (docId: string, newData) => {
+export const updateTextDoc = async (docId: string, newData: {}) => {
   try {
     const docRef = doc(db, "texts", docId); // Create a DocumentReference object
     await updateDoc(docRef, newData); // Pass the DocumentReference object as the first argument

@@ -7,9 +7,10 @@ import Comments from '@/components/Comments';
 import { getTextsDoc, updateTextDoc } from '@/db/Blogs/Blogs';
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
+import type { DocumentData } from 'firebase/firestore';
 
 export default function Page({ params }: { params: { id: string } }) {
-  const [blogDoc, setBlogDoc] = useState(null);
+  const [blogDoc, setBlogDoc] = useState<{id: string} & DocumentData | null>(null);
   const {authUser, isLoading} = useAuth();
   const router = useRouter();
   // const {id} = router.query;
@@ -41,10 +42,9 @@ export default function Page({ params }: { params: { id: string } }) {
         </div>
       }
 
-      {/* /blogs/[id] A specific blog's page. */}
+      {/* /blogs/[id] - A specific blog's page. And an editor (which could be conditionally rendered for only me!) */}
       {!isLoading && authUser && blogDoc && 
       <div className="flex flex-col p-4 gap-6 h-screen">
-        {/* <button onClick={logout}>Logout</button> */}
         {/* <Editor data={blog} onSave={async (value) => {
           // Make sure we have a document reference before updating it
           if (blog) {

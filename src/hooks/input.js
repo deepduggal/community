@@ -53,7 +53,7 @@ export function useSelection(inputRef, selectionValues=null) {
       }
     };
   }
-  , [selectionValues]); // Added value as a dependency
+  , [selectionValues, inputRef]); // Added value as a dependency
 
 
   console.log(selectionValues.cursor)
